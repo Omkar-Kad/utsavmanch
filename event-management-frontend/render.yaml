@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: utsavmunch-frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run preview
+    envVars:
+      - key: VITE_API_URL
+        value: https://utsavmunch-backend.onrender.com
+      - key: NODE_ENV
+        value: production
+    staticPublishPath: ./dist 
