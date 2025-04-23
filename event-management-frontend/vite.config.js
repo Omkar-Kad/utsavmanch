@@ -24,9 +24,7 @@ export default defineConfig({
     emptyOutDir: true,
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, './index.html')
-      },
+      input: 'index.html',
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
