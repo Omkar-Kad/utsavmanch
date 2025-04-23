@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: utsavmunch-frontend
+    env: node
+    buildCommand: cd event-management-frontend && npm install && npm install -g vite && npm run build
+    startCommand: cd event-management-frontend && npm run preview
+    envVars:
+      - key: VITE_API_URL
+        value: https://utsavmunch-backend.onrender.com
+      - key: NODE_ENV
+        value: production
+    staticPublishPath: ./event-management-frontend/dist
+
+  - type: web
+    name: utsavmunch-backend
+    env: node
+    buildCommand: cd event-management-backend && npm install
+    startCommand: cd event-management-backend && node server.js
+    envVars:
+      - key: MONGODB_URI
+        value: your_mongodb_uri
+      - key: JWT_SECRET
+        value: your_jwt_secret
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/event-management-backend/uploads
+      sizeGB: 1 
